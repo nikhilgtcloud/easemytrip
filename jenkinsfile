@@ -51,6 +51,7 @@ pipeline {
                     echo "Docker Image Push to DockerHub Completed"
                 }
             }
+        }
         stage('Docker Image Push to Amazon ECR') {
             steps {
                 echo "Tagging Docker Image for ECR: ${env.ECR_IMAGE_NAME}"
