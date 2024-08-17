@@ -3,7 +3,6 @@ pipeline {
     environment {
         IMAGE_NAME = "nikhilthakur969/easemytrip:dev-easemytrip-v.1.${env.BUILD_NUMBER}"
         ECR_IMAGE_NAME = "730335224732.dkr.ecr.ap-south-1.amazonaws.com/easemytrip:dev-easemytrip-v.1.${env.BUILD_NUMBER}"
-        NEXUS_IMAGE_NAME = "13.127.166.7:8085/easemytrip:dev-easemytrip-v.1.${env.BUILD_NUMBER}"
         }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
@@ -82,7 +81,7 @@ pipeline {
         stage('Delete Local Docker Images') {
             steps {
                 echo "Deleting Local Docker Images: ${env.IMAGE_NAME} ${env.ECR_IMAGE_NAME} ${env.NEXUS_IMAGE_NAME}"
-                sh "docker rmi ${env.IMAGE_NAME} ${env.ECR_IMAGE_NAME} ${env.NEXUS_IMAGE_NAME}"
+                sh "docker rmi ${env.IMAGE_NAME} ${env.ECR_IMAGE_NAME}"
                 echo "Local Docker Images Deletion Completed"
             }
         }
